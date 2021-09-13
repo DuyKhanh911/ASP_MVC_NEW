@@ -1,0 +1,10 @@
+D:\SaleWeb\Models\bin\Debug\Models.dll.config
+D:\SaleWeb\Models\bin\Debug\Models.dll
+D:\SaleWeb\Models\bin\Debug\Models.pdb
+D:\SaleWeb\Models\bin\Debug\EntityFramework.dll
+D:\SaleWeb\Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\SaleWeb\Models\bin\Debug\EntityFramework.xml
+D:\SaleWeb\Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\SaleWeb\Models\obj\Debug\Models.dll
+D:\SaleWeb\Models\obj\Debug\Models.pdb
+D:\SaleWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

@@ -1,0 +1,56 @@
+﻿@model SaleWeb.Areas.Admin.Models.LoginModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Login - SB Admin</title>
+    <link href="~/Assets/Admin/css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+          
+    <div id="wapper">
+        <h2 class="content">Login</h2>
+
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false,"",new {@class="text-danger" })
+            <div class="mb-3">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(c=> c.RememberMe)RememberMe
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+</body>
+</html>
+<style>
+    #wapper {
+        background-color:antiquewhite;
+        margin:50px auto;
+        width:300px;
+
+    }
+    .content {
+        text-align:center;
+       
+         }
+</style>
+
+
+
+
+
