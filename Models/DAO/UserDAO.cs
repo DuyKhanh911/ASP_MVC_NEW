@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace Models.DAO
 {
@@ -14,6 +15,10 @@ namespace Models.DAO
         public void AddObject<T>(T obj)
         {
             mydb.Set(obj.GetType()).Add(obj);
+        }
+        public void DeleteObject<T>(T obj)
+        {
+            mydb.Set(obj.GetType()).Remove(obj);
         }
         public void Save() {
             mydb.SaveChanges();
@@ -53,6 +58,15 @@ namespace Models.DAO
         public User UserID(string username) {
             return mydb.Users.Where(c => c.UserName == username).FirstOrDefault();
         }
-
+        public User GetusID(int id)
+        {
+            return mydb.Users.Where(c => c.ID == id).FirstOrDefault();
+        }
+        public List<User> GetListUser() {
+            return mydb.Users.ToList();
+        }
+        public IEnumerable<User> ListAll(int page, int pageSize) {
+           return mydb.Users.OrderByDescending(c => c.CreatedDate).ToPagedList(page, pageSize);
+        }
     }
 }

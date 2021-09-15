@@ -1,6 +1,8 @@
-﻿
+﻿@model PagedList.IPagedList<Models.EF.User>
+@using PagedList.Mvc;
+@*@model List<Models.EF.User>*@
 @{
-    Layout = null;
+    Layout = null; 
 }
 
 <!DOCTYPE html>
@@ -9,10 +11,48 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 </head>
 <body>
-    <div> 
-        dauy llaf home
+    <h2> Danh Sách User</h2>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Password</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Status</th>
+                <th scope="col">Option</th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach (Models.EF.User item in Model)
+            {
+            <tr id="tr_@item.ID">
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Status </td>
+                <td>
+                    <a href="@Url.Action("edit",new { id = @item.ID})"><i class="far fa-edit"></i></a>
+                    <span>&nbsp;</span>
+                    <a href=" @Url.Action("delete",new {id = @item.ID})"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>      
+            }
+        </tbody>
+    </table>
+     @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }));
+    <div>
+        @Html.ActionLink("Back to Create", "create")
     </div>
 </body>
 </html>
+

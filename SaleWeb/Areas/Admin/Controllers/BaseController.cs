@@ -11,8 +11,9 @@ namespace SaleWeb.Areas.Admin.Controllers
     {
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-            if (session == null) {
+            var session = Session["uslogin"];
+            if (session == null)
+            {
                 filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary(new { Controller = "Login", Action = "Index", Areas = "Admin" }));
 
             }

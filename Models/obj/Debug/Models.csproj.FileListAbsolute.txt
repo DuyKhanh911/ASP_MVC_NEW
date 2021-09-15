@@ -8,3 +8,17 @@ D:\SaleWeb\Models\bin\Debug\EntityFramework.SqlServer.xml
 D:\SaleWeb\Models\obj\Debug\Models.dll
 D:\SaleWeb\Models\obj\Debug\Models.pdb
 D:\SaleWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\Models.dll.config
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\Models.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\Models.pdb
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\EntityFramework.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\EntityFramework.xml
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\obj\Debug\Models.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\obj\Debug\Models.pdb
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\PagedList.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\PagedList.xml
+C:\Users\ASUS\Desktop\SaleWeb_ASP\Models\bin\Debug\PagedList.Mvc.xml

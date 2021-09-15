@@ -9,15 +9,20 @@ using System.Web.Mvc;
 
 namespace SaleWeb.Areas.Admin.Controllers
 {
-    public class LoginController : BaseController
+    public class LoginController : Controller
     {
         // GET: Admin/Login
         public ActionResult Index()
         {
+            //var session = Session["uslogin"];
+            //if (session != null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //KTR dang nhap
             return View();
         }
         [HttpPost]
-
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
@@ -26,12 +31,12 @@ namespace SaleWeb.Areas.Admin.Controllers
                 var result = dao.Login(model.UserName, Encrytor.MD5Hash(model.Password));
                 if (result == 1)
                 {
-                    var userIDSession = dao.UserID(model.UserName);
-                    var usersession = new UserLogin();
-                    usersession.UserName = userIDSession.UserName;
-                    usersession.UserID = userIDSession.ID;
-                    Session.Add(CommonConstants.USER_SESSION, usersession);
-                    //Session["uslogin"] = result;
+                    //var userIDSession = dao.UserID(model.UserName);
+                    //var usersession = new UserLogin();
+                    //usersession.UserName = userIDSession.UserName;
+                    //usersession.UserID = userIDSession.ID;
+                    //Session.Add(CommonConstants.USER_SESSION, usersession);
+                    Session["uslogin"] = result;
                     return RedirectToAction("Index", "Home");
                 }
                 else if (result == -3)

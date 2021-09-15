@@ -18,7 +18,8 @@ namespace SaleWeb.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller = "Login" ,action = "Index", id = UrlParameter.Optional }
+                new { controller = "Login" ,action = "Index", id = UrlParameter.Optional },
+                  new[] { "SaleWeb.Areas.Admin.Controllers" }
             );
         }
     }
