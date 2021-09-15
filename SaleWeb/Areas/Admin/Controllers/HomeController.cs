@@ -1,26 +1,39 @@
 ﻿using Models.DAO;
 using Models.EF;
 using SaleWeb.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PagedList;
+using System.Web.Security;
+//
+using System.ComponentModel.DataAnnotations;
+
 
 namespace SaleWeb.Areas.Admin.Controllers
 {
-   // public class HomeController : BaseController
+    public class HomeController : BaseController
    //Ktr đang nhap 
-    public class HomeController : Controller
+   // public class HomeController : Controller
     {
         UserDAO mydb = new UserDAO();
         OnlineShopDBContext mydb1 = new OnlineShopDBContext();
         // GET: Admin/Home
-        public ActionResult Index(int page =1, int pageSize = 4)
+        public ActionResult Index(int? page)
         {
-            var model = mydb.ListAll(page, pageSize);
-           List<User> UsList = mydb.GetListUser();
+            // 1. Tham số int? dùng để thể hiện null và kiểu int
+            // page có thể có giá trị là null và kiểu int.
+
+            // 2. Nếu page = null thì đặt lại là 1.
+            if (page == null) page = 1;         
+
+            // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
+            int pageSize = 3;
+
+            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
+            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
+            int pageNumber = (page ?? 1);
+
+            //  // 5. Trả về các Link được phân trang theo kích thước và số trang.
+            // var model = mydb1.Users.OrderByDescending(m => m.ID).ToPagedList(page ?? 1, 5);
+            var model = mydb.ListAll(pageNumber, pageSize);
             return View(model);
         }
         public ActionResult create()
@@ -58,28 +71,36 @@ namespace SaleWeb.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id) {
-            User us = mydb.GetusID(id);
+            var us = mydb.GetusID(id);
             return View(us);
         }
         //Edit
         [HttpPost]
-        public ActionResult editus(int id)
+        public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
-                UserDAO IQ = new UserDAO();
-                var use = IQ.GetusID(id);
-                User us = new User();
+                var IQ = new UserDAO();
+                var use = IQ.GetusID(user.ID);
 
                 if (use != null)
                 {
-                    us.UserName = use.UserName;
-                    //use.Password = Encrytor.MD5Hash(useri.Password);
-                    //use.Name = useri.Name;
-                    //use.Address = useri.Address;
-                    //use.Email = useri.Email;
-                    //use.Phone = useri.Phone;
-                    //use.Status = useri.Status;
+                    use.Name = user.Name;
+                    if (!string.IsNullOrEmpty(user.Password))
+                    {
+                        use.Password = Encrytor.MD5Hash(user.Password);
+                    }
+                    else
+                    {
+                        //var getpass = IQ.getPasss(use.ID, use.Password);
+                        use.Password = use.Password;
+                    }
+                    
+                    use.Name = user.Name;
+                    use.Address = user.Address;
+                    use.Email = user.Email;
+                    use.Phone = user.Phone;
+                    use.Status = user.Status;
                     IQ.Save();
                     // Thành công chuyển đến trang index
                     return RedirectToAction("Index");
@@ -87,6 +108,11 @@ namespace SaleWeb.Areas.Admin.Controllers
             }
             return View("Edit");
         }
-
+        //LOGOUT
+        public ActionResult logout() {
+            Session["uslogin"] = null;
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

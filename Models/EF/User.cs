@@ -13,9 +13,10 @@ namespace Models.EF
         public long ID { get; set; }
 
         [StringLength(50)]
-        public string UserName { get; set; }
         [Required]
+        public string UserName { get; set; }
 
+        
         [StringLength(32)]
         public string Password { get; set; }
 

@@ -12,25 +12,28 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("editus","Home",FormMethod.Post))
+        @using (Html.BeginForm("Edit","Home",FormMethod.Post))
         {
             //@Html.AntiForgeryToken();
             <div class="form-horizontal">
                 <h3>Edit User</h3>
                 @Html.ValidationSummary(false, "", new { @Class = "Text-dager" })
+                
                 <div class="form-group">
-                    @Html.LabelFor(m=> m.UserName)
+                    @Html.LabelFor(m => m.UserName)
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m=> m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Password)
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
+
+
                 <div class="form-group">
                     @Html.LabelFor(m => m.Name)
                     <div class="col-md-10">

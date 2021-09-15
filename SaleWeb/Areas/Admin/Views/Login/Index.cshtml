@@ -12,45 +12,98 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-          
-    <div id="wapper">
+
+    @*<div id="wapper">
         <h2 class="content">Login</h2>
 
         @using (Html.BeginForm("Login", "Login", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-            @Html.ValidationSummary(false,"",new {@class="text-danger" })
+            @Html.ValidationSummary(false, "", new { @class = "text-danger", @autofocus = "autofocus" })
             <div class="mb-3">
                 @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { @autofocus = "autofocus" })
             </div>
             <div class="mb-3">
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
             </div>
             <div class="mb-3 form-check">
-                @Html.CheckBoxFor(c=> c.RememberMe)RememberMe
+                @Html.CheckBoxFor(c => c.RememberMe)RememberMe
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         }
+    </div>*@
+    @*///////////////*@
+    <div>
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex align-items-center justify-content-center h-100">
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+                    </div>
+                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger", @autofocus = "autofocus" })
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-lg", @autofocus = "autofocus" })
+                                @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg" })
+                                @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                            </div>
+
+                            <div class="d-flex justify-content-around align-items-center mb-4">
+                                <!-- Checkbox -->
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           value=""
+                                           id="form1Example3"
+                                           checked />
+                                    <label class="form-check-label" for="form1Example3"> Remember me </label>
+                                </div>
+                                <a href="#!">Forgot password?</a>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
+                            <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 </html>
 <style>
     #wapper {
-        background-color:antiquewhite;
-        margin:50px auto;
-        width:300px;
-
+        background-color: antiquewhite;
+        margin: 50px auto;
+        width: 300px;
     }
+
     .content {
-        text-align:center;
-       
-         }
+        text-align: center;
+    }
+
+    .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
 </style>
-
-
-
-
-

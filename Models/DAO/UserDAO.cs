@@ -11,15 +11,21 @@ namespace Models.DAO
    public class UserDAO
     {
         OnlineShopDBContext mydb = new OnlineShopDBContext();
-        // Theem moi
+        /// <summary>
+        /// THÊM MỚI
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
         public void AddObject<T>(T obj)
         {
             mydb.Set(obj.GetType()).Add(obj);
         }
+        //XÓA
         public void DeleteObject<T>(T obj)
         {
             mydb.Set(obj.GetType()).Remove(obj);
         }
+        //LƯU XUỐNG DB
         public void Save() {
             mydb.SaveChanges();
         }
@@ -58,15 +64,43 @@ namespace Models.DAO
         public User UserID(string username) {
             return mydb.Users.Where(c => c.UserName == username).FirstOrDefault();
         }
-        public User GetusID(int id)
+        //tìm user qua ID= nếu ID kiểu int thì dùng hàm find
+        public User GetusID(long id)
         {
-            return mydb.Users.Where(c => c.ID == id).FirstOrDefault();
+            return mydb.Users.Find(id);
         }
+        /// <summary>
+        /// lấy ra danh sách list
+        /// </summary>
+        /// <returns></returns>
         public List<User> GetListUser() {
             return mydb.Users.ToList();
         }
+        //hàm phân trang
         public IEnumerable<User> ListAll(int page, int pageSize) {
-           return mydb.Users.OrderByDescending(c => c.CreatedDate).ToPagedList(page, pageSize);
+           return mydb.Users.OrderByDescending(c => c.ID).ToPagedList(page, pageSize);
+        }
+        //UPDATE => KHông cần viết vẫn đc , chỉ cẩn gọi id ra ds rồi save lại thôi
+        //public bool update(User us)
+        //{
+        //    try
+        //    {
+        //        var userid = mydb.Users.Find(us.ID);
+        //        userid.Name = us.Name;
+        //        userid.Address = us.Address;
+        //        userid.Phone = us.Phone;
+        //        userid.Status = us.Status;
+        //        Save();
+        //        return true;
+
+        //    }
+        //    catch(Exception ex) {
+        //        return false;
+        //    }
+        //}
+        public User getPasss(long id, string pass) {
+            return mydb.Users.Where(c => c.ID == id && c.Password == pass).FirstOrDefault();
         }
     }
+
 }

@@ -14,11 +14,11 @@ namespace SaleWeb.Areas.Admin.Controllers
         // GET: Admin/Login
         public ActionResult Index()
         {
-            //var session = Session["uslogin"];
-            //if (session != null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            var session = Session["uslogin"];
+            if (session != null)
+            {
+                return RedirectToAction("index", "home");
+            }
             //KTR dang nhap
             return View();
         }
