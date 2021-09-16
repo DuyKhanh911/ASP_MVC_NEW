@@ -56,7 +56,7 @@
                     <td>@item.Address</td>
                     <td>@item.Email</td>
                     <td>@item.Phone</td>
-                    <td>@(item.Status.Equals(false) ? "Active" : "Block")</td>
+                    <td>@(item.Status.Equals(true) ? "Active" : "Block")</td>
                     <td>
                         <a href="@Url.Action("edit",new { id = @item.ID})"><i class="far fa-edit"></i></a>
                         <span>&nbsp;</span>
@@ -79,6 +79,8 @@
         @Html.ActionLink("Back to Create", "create")
         |
         <a href="@Url.Action("logout")">Logout</a>
+        |
+        <a href="/Admin/Content/create">content</a>
     </div>
 
 </body>
