@@ -98,8 +98,19 @@ namespace Models.DAO
         //        return false;
         //    }
         //}
+        /// <summary>
+        /// GET PASS
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         public User getPasss(long id, string pass) {
             return mydb.Users.Where(c => c.ID == id && c.Password == pass).FirstOrDefault();
+        }
+        public bool ChangeStatus(long id) {
+            var stus = mydb.Users.Find(id);
+            stus.Status = !stus.Status;
+            return stus.Status;
         }
     }
 

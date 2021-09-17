@@ -13,12 +13,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    @*<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -56,7 +59,8 @@
                     <td>@item.Address</td>
                     <td>@item.Email</td>
                     <td>@item.Phone</td>
-                    <td>@(item.Status.Equals(true) ? "Active" : "Block")</td>
+                    <td><a href="#" data-id = "@item.ID" class="btn-active" >@(item.Status.Equals(true) ? "Active" : "Block")</a>
+                    </td>
                     <td>
                         <a href="@Url.Action("edit",new { id = @item.ID})"><i class="far fa-edit"></i></a>
                         <span>&nbsp;</span>
@@ -91,5 +95,40 @@
         box-shadow: 0 1px 0 0 #f48fb1;
     }
 </style>
-
 @*phân trang thì tải NuGet PageList.mvc=> viet sql sử dụng IEnumAble=>viết gọi hàm qua controller// import pagedlist.mvc vào controller//viêt VIEW hiển thị// cài boostrap mới vào.*@
+
+@*<script>
+        var user = {
+        init: function () {
+            user.registerEvents();
+        },
+        registerEvents: function () {
+            $('.btn-active').off('click').on('click', function (e) {
+                e.preventDefault();
+                var TextStatus = $(this);
+                var id = TextStatus.data('id');
+                $.ajax({
+                    url: "/Admin/Home/UpStatus",
+                    data: { id: id },
+                    dataType: "json",
+                    type: "POST",
+                    success: function (response) {
+                        //console.log(response);
+                        if (response.status == true) {
+                            TextStatus.text('Active');
+                        }
+                        else {
+                            TextStatus.text('Block');
+                        }
+                    }
+                });
+            });
+        }
+    }
+        user.init();
+    /// Có thể vào Assets/Admin/js/main.js để tham khảo hàm => dễ hiểu hơn
+ </script>*@
+
+
+    <script src="/Assets/Admin/js/main.js"></script>
+@*GỌI AJAX ĐỂ CHANGE STATUS*@

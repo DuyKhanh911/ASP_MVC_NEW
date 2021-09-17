@@ -5,13 +5,13 @@ using System.Web.Mvc;
 using System.Web.Security;
 //
 using System.ComponentModel.DataAnnotations;
-
+using System.Collections.Generic;
 
 namespace SaleWeb.Areas.Admin.Controllers
 {
-    public class HomeController : BaseController
+    //public class HomeController : BaseController
    //Ktr đang nhap 
-   // public class HomeController : Controller
+    public class HomeController : Controller
     {
         UserDAO mydb = new UserDAO();
         OnlineShopDBContext mydb1 = new OnlineShopDBContext();
@@ -36,10 +36,22 @@ namespace SaleWeb.Areas.Admin.Controllers
             var model = mydb.ListAll(pageNumber, pageSize);
             return View(model);
         }
+
+        public ActionResult Test()
+        {
+            var dao = new UserDAO();
+            List<User> list = dao.GetListUser();
+            return View(list);
+        }
         public ActionResult create()
         {
             return View();
         }
+        /// <summary>
+        /// TẠO USER
+        /// </summary>
+        /// <param name="us"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult create(User us)
@@ -62,6 +74,11 @@ namespace SaleWeb.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// XÓA USER
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult delete(int id)
         {
            
@@ -70,6 +87,12 @@ namespace SaleWeb.Areas.Admin.Controllers
             mydb.Save();
             return RedirectToAction("Index");
         }
+
+        /// <summary>
+        /// SỬA USER
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id) {
             var us = mydb.GetusID(id);
             return View(us);
@@ -113,6 +136,20 @@ namespace SaleWeb.Areas.Admin.Controllers
             Session["uslogin"] = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
+        }
+        /// <summary>
+        /// GỌI AJAX SỬA TRẠNG THÁI STATUS
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpStatus(long id)
+        {
+            var change = mydb.ChangeStatus(id);
+            mydb.Save();
+            return Json(new
+            {
+                status = change
+            });
         }
     }
 }

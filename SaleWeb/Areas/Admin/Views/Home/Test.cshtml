@@ -1,0 +1,43 @@
+﻿@model List<Models.EF.User>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section  jsfoot{
+
+    <script src="/Assets/Admin/js/main.js"></script>
+  
+}
+<h2>Test</h2>
+<div style="align-items:center; text-align:center;width:400px;margin-top:50px;margin-left:200px;">
+    <table class="table" border="1" style="margin-top:10px">
+        <thead>
+            <tr>
+                <th scope="col">UserName</th>
+                @*<th scope="col">Password</th>*@
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Models.EF.User item in Model)
+            {
+                <tr id="tr_@item.ID">
+                    <td>@item.UserName</td>
+                    @*<td>@item.Password</td>*@
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>
+                        <a href="#" data-id="@item.ID" class="btn-active">@(item.Status.Equals(true) ? "Active" : "Block")</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

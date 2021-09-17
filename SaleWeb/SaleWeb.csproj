@@ -193,6 +193,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Assets\Admin\css\styles.css" />
     <Content Include="Assets\Admin\js\datatables-simple-demo.js" />
     <Content Include="Assets\Admin\js\main.js" />
     <Content Include="Assets\Admin\js\plugins\ckeditor\adapters\jquery.js" />
@@ -1394,6 +1396,7 @@
     <Content Include="Assets\Admin\js\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Assets\Admin\js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\Admin\js\plugins\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Home\Test.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -1427,8 +1430,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Assets\Admin\assets\" />
-    <Folder Include="Assets\Admin\css\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
